@@ -178,9 +178,10 @@ public:
             const uint32_t thread = row & 0xFFFFFFFFu;
             const ThreadSet& threads = entities[ entity ];
             const ThreadSetCIter threadPos = threads.find( thread );
-            const uint32_t y = yPos[ entity ] -
+			const uint32_t y = yPos[ entity ] -
                 std::distance( threads.begin(), threadPos ) * rowHeight;
-            const float y2 = float( y - barHeight - space );
+			const float y2 = std::max((float)y 
+                                  - (float)barHeight - (float)space, 0.0f);
 #if 1
             // per-frame alternating background color
             const float y1 = float( y + space );
@@ -235,7 +236,8 @@ public:
 
             const uint32_t inset = item.layer * space;
             const float y1 = float( y - inset );
-            const float y2 = float( y - barHeight + inset );
+			const float y2 = std::max((float)y - 
+                             (float)barHeight + (float)inset, 0.0f);
             LBASSERTINFO( y2 < y1, y2 << " >= " << y1 << " (" << y << ")" );
 
             glColor4fv( type.color );
@@ -332,7 +334,7 @@ private:
             x1 += legendWidth;
             const float x2 = x1 + legendWidth - space;
             const float y1 = float( nextY );
-            const float y2 = float( nextY - barHeight );
+			const float y2 = std::max((float)nextY - (float)barHeight, 0.0f);
 
             glColor3fv( type.color );
             glBegin( GL_QUADS ); {
