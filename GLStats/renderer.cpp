@@ -334,7 +334,7 @@ private:
             x1 += legendWidth;
             const float x2 = x1 + legendWidth - space;
             const float y1 = float( nextY );
-			const float y2 = std::max((float)nextY - (float)barHeight, 0.0f);
+            const float y2 = std::max( (float)nextY - (float)barHeight, 0.0f);
 
             glColor3fv( type.color );
             glBegin( GL_QUADS ); {
