@@ -16,6 +16,7 @@ include(Common)
 include(GitTargets)
 include(UpdateFile)
 
+add_definitions(-D_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS)
 set(FIND_PACKAGES_DEFINES GLSTATS_STATIC)
 include(FindPackages)
 set(GLSTATS_DEPENDENT_LIBRARIES Lunchbox)
